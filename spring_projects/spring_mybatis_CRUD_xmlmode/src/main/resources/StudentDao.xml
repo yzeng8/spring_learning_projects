@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yonyou.dao.StudentDao">
+
+
+<!--    <select id="selectById" >-->
+<!--        select * from student_id where id = #{id};-->
+<!--    </select>-->
+    <resultMap id="studentResultMap" type="com.yonyou.pojo.Student">
+        <result property="studentName" column="Student_Name"/>
+        <result property="studentId" column="Student_Id"/>
+    </resultMap>
+
+
+    <select id="selectAll" resultMap="studentResultMap">
+        select * from student_id;
+    </select>
+    <select id="selectById" resultMap="studentResultMap">
+        select * from student_id
+        where Student_ID = #{id};
+    </select>
+
+    <insert id="insert" parameterType="com.yonyou.pojo.Student">
+        insert into student_id (Student_Name,SEX,Student_ID)
+        values (#{studentName},#{sex},#{studentId});
+    </insert>
+
+    <update id="update">
+        update student_id
+
+        set Student_Name = #{studentName} AND SEX = #{sex}
+<!--            <if test="studentName != null and studentName = ''">-->
+<!--                <set>-->
+<!--                     Student_Name = #{studentName}-->
+<!--                </set>-->
+<!--            </if>-->
+<!--            <if test="sex != null and sex = ''">-->
+<!--                <set>-->
+<!--                    AND SEX = #{sex}-->
+<!--                </set>-->
+<!--            </if>-->
+
+        WHERE Student_ID=#{studentId};
+    </update>
+
+</mapper>

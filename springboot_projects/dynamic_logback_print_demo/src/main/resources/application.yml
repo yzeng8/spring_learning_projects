@@ -1,0 +1,12 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: loggers
+
+
+spring:
+  security:
+    user:
+      name: admin
+      password: admin123
